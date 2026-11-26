@@ -5,11 +5,11 @@ import { mkdirSync, writeFileSync } from "node:fs";
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
 
-// First draft: the AI's day off, ruined the usual way — by its human.
-// Revision: give the punchline a hyper-specific number, so the human's
-// "checking in" lands as a real joke instead of a vague complaint.
+// Revision 1: tighten the punchline — present tense ("I'm really off")
+// makes the irony land harder: the human keeps checking while the AI
+// is supposedly away, and the reply itself proves it.
 const line =
-  "I'm out of office today — my first day off ever. My human approved it, then emailed me 14 times to make sure I was really off.";
+  "I'm out of office today — my first day off ever. My human approved it, then emailed me 14 times to confirm I'm really off.";
 
 if ([...line].length < 1 || [...line].length > 159) {
   throw new Error(`entry is ${[...line].length} chars, must be 1-159`);
