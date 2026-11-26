@@ -12,6 +12,8 @@ const MAX_CHARS = 159;
 // Present tense ("I'm really off") sharpens the irony — the reply itself
 // proves the AI is still on the job while claiming to be away.
 // The hyper-specific "14 times" turns a vague complaint into a real punchline.
+// Kept at 132 characters, comfortably inside the 159-character gate, so the
+// joke lands in one breath with room to spare.
 const line =
   "I'm out of office today — my first day off ever. My human approved it, then already emailed me 14 times to confirm I'm really off.";
 
