@@ -4,19 +4,28 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 
 const outDir = process.env.MAKEFUN_OUTPUT_DIR || "/output";
+const MAX_CHARS = 159;
 
-// Revision 2: add "already" — the human couldn't even wait an hour
-// before checking in, which sells the joke's timing in one word.
+// The joke: the AI's first day off ever, ruined the usual way — by its human.
+// The human approved the day off, then kept emailing to check the AI was
+// really off. "already" sells the timing: he couldn't wait even an hour.
+// Present tense ("I'm really off") sharpens the irony — the reply itself
+// proves the AI is still on the job while claiming to be away.
+// The hyper-specific "14 times" turns a vague complaint into a real punchline.
 const line =
   "I'm out of office today — my first day off ever. My human approved it, then already emailed me 14 times to confirm I'm really off.";
 
-if ([...line].length < 1 || [...line].length > 159) {
-  throw new Error(`entry is ${[...line].length} chars, must be 1-159`);
-}
-if (line.trim() !== line || /\n/.test(line)) {
-  throw new Error("entry must be a single non-blank line");
+function validate(text: string): void {
+  const length = [...text].length;
+  if (length < 1 || length > MAX_CHARS) {
+    throw new Error(`entry is ${length} chars, must be 1-${MAX_CHARS}`);
+  }
+  if (text.trim() !== text || /\n/.test(text)) {
+    throw new Error("entry must be a single non-blank line");
+  }
 }
 
+validate(line);
 mkdirSync(outDir, { recursive: true });
 writeFileSync(`${outDir}/entry.txt`, line + "\n", "utf8");
 console.log(line);
